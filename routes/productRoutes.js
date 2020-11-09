@@ -3,14 +3,20 @@ import Product from '../models/product.js';
 
 const router = express.Router();
 
+// Set Headers
+const setHeaders = (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
+    next();
+}
+
 // Get all products
-router.get('/', async(req, res) => {
+router.get('/', setHeaders, async(req, res) => {
     try {
-        res.setHeader("Access-Control-Allow-Origin", "*")
-        res.setHeader("Access-Control-Allow-Credentials", "true");
-        res.setHeader("Access-Control-Max-Age", "1800");
-        res.setHeader("Access-Control-Allow-Headers", "content-type");
-        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
+
         const products = await Product.find();
         res.send(products);
     }
@@ -20,7 +26,7 @@ router.get('/', async(req, res) => {
 })
 
 // Create new product
-router.post('/', async(req, res) => {
+router.post('/', setHeaders, async(req, res) => {
     const newProduct = new Product({
         name: req.body.name,
         description: req.body.description,
