@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import productRoutes from './routes/productRoutes.js';
 
 // Configure .env contents
@@ -18,6 +19,9 @@ db.once('open', () => console.log('Connected to the database'));
 
 // Use JSON
 app.use(express.json());
+
+// Use CORS
+app.use(cors());
 
 // Routes
 
