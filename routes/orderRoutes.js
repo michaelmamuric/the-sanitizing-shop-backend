@@ -24,6 +24,17 @@ router.get('/', setHeaders, async(req, res) => {
     }
 })
 
+// Get orders by one user
+router.get('/user/:id', setHeaders, async(req, res) => {
+    try {
+        const orders = await Order.find({ userId: req.body.userId });
+        res.send(orders);
+    }
+    catch(error) {
+        res.status(500).send(error.message)
+    }
+})
+
 // Create new order
 router.post('/', setHeaders, async(req, res) => {
     const newOrder = new Order({
