@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import productRoutes from './routes/productRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 // Configure .env contents
 dotenv.config();
@@ -32,5 +33,6 @@ app.get('/', (req, res) => {
 
 // Products Route
 app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
 
 app.listen(port, () => console.log('Server is running'));

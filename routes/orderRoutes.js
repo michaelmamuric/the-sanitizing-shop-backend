@@ -1,5 +1,5 @@
 import express from 'express';
-import Product from '../models/product.js';
+import Order from '../models/order.js';
 
 const router = express.Router();
 
@@ -13,30 +13,33 @@ const setHeaders = (req, res, next) => {
     next();
 }
 
-// Get all products
+// Get all orders
 router.get('/', setHeaders, async(req, res) => {
     try {
-        const products = await Product.find();
-        res.send(products);
+        const orders = await Order.find();
+        res.send(orders);
     }
     catch(error) {
         res.status(500).send(error.message)
     }
 })
 
-// Create new product
+// Create new order
 router.post('/', setHeaders, async(req, res) => {
-    const newProduct = new Product({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        stockCount: req.body.stockCount,
-        image: req.body.image !== null ? req.body.image : null
+    const newOrder = new Order({
+        userId: req.body.userId,
+        purchaseDate: req.body.purchaseDate !== null ? req.body.purchaseDate : new Date(),
+        shippingHouseNumber: req.body.shippingHouseNumber,
+        shippingStreetNumber: req.body.shippingStreetNumber,
+        shippingCity: req.body.shippingCity,
+        shippingProvince: req.body.shippingProvince,
+        shippingPostalCode: req.body.shippingPostalCode,
+        items: req.body.items
     });
 
     try {
-        const addedProduct = await newProduct.save();
-        res.status(201).send(addedProduct);
+        const addedOrder = await newOrder.save();
+        res.status(201).send(addedOrder);
     }
     catch(error) {
         res.status(400).send(error.message)
