@@ -10,8 +10,8 @@ Its corresponding Github repo can be found here: https://github.com/michaelmamur
 ## Notes
 
 The backend uses [MongoDB](https://www.mongodb.com/), a popular NoSQL database. More specifically, data is stored in the cloud using [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-[Express](https://expressjs.com/) was used to create the server endpoints, and [Node.js](https://nodejs.org/en/) was used as the framework.
+[Express](https://expressjs.com/) was used to create the server endpoints, and [Node.js](https://nodejs.org/en/) was used as the web framework.
 
-Together with the frontend coded with React, the entire project used the [MERN stack](https://www.mongodb.com/mern-stack).
+Together with the frontend coded with React, the entire project uses the [MERN stack](https://www.mongodb.com/mern-stack).
 
 
